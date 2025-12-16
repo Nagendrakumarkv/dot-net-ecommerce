@@ -1,0 +1,41 @@
+Building a clone of Flipkart is a massive project, but breaking it down into a 15-Day MVP (Minimum Viable Product) Plan makes it manageable.
+
+We will use ASP.NET Core MVC (to keep frontend and backend in one project for simplicity), PostgreSQL, and VS Code.
+
+Here is your roadmap to building the "FlipKart Clone."
+
+The 15-Day Roadmap
+Phase 1: Foundation & Users (Days 1-3)
+Day 1: Project Setup, Database Architecture, and basic Configuration.
+
+Day 2: Authentication & Authorization (Login/Register using ASP.NET Identity).
+
+Day 3: Base Layout Design (Navbar, Footer, Bootstrap setup for that "Flipkart Blue" look).
+
+Phase 2: Product Catalog (Days 4-7)
+Day 4: Admin Panel - Category Management (Electronics, Fashion, etc.).
+
+Day 5: Admin Panel - Product Management (CRUD: Add Images, Price, Description).
+
+Day 6: Home Page - Displaying Products & "Deal of the Day" carousel.
+
+Day 7: Product Listing Page - Search, Filter by Price, Sort by Popularity.
+
+Phase 3: Shopping Core (Days 8-11)
+Day 8: Product Details Page (Zoom image, Specifications, Reviews section).
+
+Day 9: Shopping Cart (Add/Remove items, Update quantity, Session management).
+
+Day 10: User Addresses (Save multiple delivery addresses).
+
+Day 11: Checkout Flow (Review Cart -> Select Address -> Payment Summary).
+
+Phase 4: Orders & Payments (Days 12-13)
+Day 12: Order Placement (Saving the order to DB) & reducing Stock.
+
+Day 13: Payment Integration (Mocking a payment gateway like Razorpay/Stripe).
+
+Phase 5: User & Admin Features (Days 14-15)
+Day 14: Order History (User view) & Order Management (Admin view: Ship/Deliver).
+
+Day 15: Polish (Error pages, Form Validations) & Final Deployment.
