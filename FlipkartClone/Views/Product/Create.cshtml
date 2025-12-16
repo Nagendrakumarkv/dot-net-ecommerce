@@ -1,0 +1,49 @@
+@model FlipkartClone.Models.Product
+
+<div class="container mt-4" style="max-width: 800px;">
+    <h2>Add Product</h2>
+    <form asp-action="Create" class="bg-white p-4 border rounded shadow-sm">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="Title" class="form-label">Product Name</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            
+            <div class="col-md-6 mb-3">
+                <label asp-for="Author" class="form-label">Brand / Author</label>
+                <input asp-for="Author" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label asp-for="ISBN" class="form-label">ISBN / SKU Code</label>
+                <input asp-for="ISBN" class="form-control" />
+                <span asp-validation-for="ISBN" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label asp-for="Price" class="form-label">Price (₹)</label>
+                <input asp-for="Price" type="number" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label asp-for="CategoryId" class="form-label">Category</label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <label asp-for="ImageUrl" class="form-label">Image URL</label>
+                <input asp-for="ImageUrl" class="form-control" placeholder="https://example.com/image.jpg" />
+                <small class="text-muted">Right click an image on Google -> Copy Image Link</small>
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <label asp-for="Description" class="form-label">Description</label>
+                <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Save Product</button>
+        <a asp-action="Index" class="btn btn-secondary w-100 mt-2">Cancel</a>
+    </form>
+</div>

@@ -42,8 +42,12 @@
                         @if (User.IsInRole(Roles.Admin))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark fw-bold" asp-controller="Category" asp-action="Index">Manage
-                                    Categories</a>
+                                <a class="nav-link text-dark fw-bold" asp-controller="Category"
+                                    asp-action="Index">Categories</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fw-bold" asp-controller="Product"
+                                    asp-action="Index">Products</a>
                             </li>
                         }
 
