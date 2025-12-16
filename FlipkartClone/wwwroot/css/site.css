@@ -1,22 +1,76 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* GLOBAL STYLES */
 body {
-  margin-bottom: 60px;
+    background-color: #f1f3f6; /* Light gray background */
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 60px;
+}
+
+/* NAVBAR STYLES */
+.fk-navbar {
+    background-color: #2874f0; /* Flipkart Blue */
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+}
+
+.fk-navbar .navbar-brand {
+    color: white !important;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.5rem;
+}
+
+.fk-navbar .nav-link {
+    color: white !important;
+    font-weight: 500;
+}
+
+/* SEARCH BAR */
+.fk-search-container {
+    background: white;
+    border-radius: 2px;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    padding: 0 10px;
+}
+
+.fk-search-input {
+    border: none;
+    width: 100%;
+    padding: 8px;
+    outline: none;
+}
+
+.fk-search-btn {
+    background: transparent;
+    border: none;
+    color: #2874f0;
+    font-weight: bold;
+}
+
+/* BUTTONS */
+.btn-login {
+    background-color: white;
+    color: #2874f0;
+    border-radius: 2px;
+    padding: 5px 40px;
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid #dbdbdb;
+}
+
+.btn-login:hover {
+    color: #2874f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+/* FOOTER */
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #172337; /* Dark footer */
+    color: white;
+    text-align: center;
+    padding: 20px 0;
 }
