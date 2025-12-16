@@ -1,0 +1,18 @@
+@model FlipkartClone.Models.Category
+
+<div class="container mt-4" style="max-width: 600px;">
+    <h2>Edit Category</h2>
+    <form asp-action="Edit" class="bg-white p-4 border rounded shadow-sm">
+        <input type="hidden" asp-for="Id" />
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Category Name</label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="DisplayOrder" class="form-label">Display Order</label>
+            <input asp-for="DisplayOrder" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-warning w-100">Update</button>
+        <a asp-action="Index" class="btn btn-secondary w-100 mt-2">Back</a>
+    </form>
+</div>

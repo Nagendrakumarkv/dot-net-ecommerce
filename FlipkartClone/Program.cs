@@ -10,6 +10,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // 2. Add Identity Services (ADD THIS BLOCK)
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>() // <--- THIS LINE IS CRITICAL
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
@@ -33,5 +34,20 @@ app.MapControllerRoute(
 
 // 4. Map Razor Pages (Identity uses Razor Pages for Login/Register)
 app.MapRazorPages(); 
+
+// --- ADD THIS BLOCK HERE ---
+using (var scope = app.Services.CreateScope()) 
+{
+    var services = scope.ServiceProvider;
+    try 
+    {
+        await FlipkartClone.Data.DbSeeder.SeedRolesAndAdminAsync(services);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"--> [Seeder] An error occurred: {ex.Message}");
+    }
+}
+// ---------------------------
 
 app.Run();
