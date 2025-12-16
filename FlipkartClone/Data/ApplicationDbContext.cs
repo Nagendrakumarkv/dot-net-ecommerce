@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore; // Add this
 using Microsoft.EntityFrameworkCore;
 using FlipkartClone.Models;
 
 namespace FlipkartClone.Data
 {
-    public class ApplicationDbContext : DbContext
+    // Change DbContext to IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext 
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

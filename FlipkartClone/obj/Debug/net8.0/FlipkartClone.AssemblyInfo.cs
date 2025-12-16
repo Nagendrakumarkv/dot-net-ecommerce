@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("FlipkartClone")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec59d7565dcf00e299e23dfb75d74b484282033e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e6df631cc61ac2a6097d8f2a5c4d59bfc5278d5f")]
 [assembly: System.Reflection.AssemblyProductAttribute("FlipkartClone")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FlipkartClone")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
