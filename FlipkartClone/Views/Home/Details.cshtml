@@ -2,35 +2,43 @@
 
 <div class="container mt-4 bg-white p-4 shadow-sm" style="min-height: 80vh;">
     <div class="row">
-        
+
         <div class="col-md-5 text-center position-relative">
-            
+
             <div class="img-zoom-container mb-4 border p-3">
                 <img src="@Model.ImageUrl" class="img-fluid" alt="@Model.Title" style="max-height: 400px;">
             </div>
 
             <div class="d-flex gap-2 justify-content-center">
-                <button class="btn btn-lg w-50 text-white fw-bold" style="background-color: #ff9f00; border-radius: 2px;">
-                    <i class="bi bi-cart-fill"></i> ADD TO CART
+                <button class="btn btn-lg w-50 text-white fw-bold"
+                    style="background-color: #ff9f00; border-radius: 2px;">
+                    <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id"
+                        class="btn btn-lg w-50 text-white fw-bold me-2"
+                        style="background-color: #ff9f00; border-radius: 2px;">
+                        <i class="bi bi-cart-fill"></i> ADD TO CART
+                    </a>
                 </button>
-                <button class="btn btn-lg w-50 text-white fw-bold" style="background-color: #fb641b; border-radius: 2px;">
+                <button class="btn btn-lg w-50 text-white fw-bold"
+                    style="background-color: #fb641b; border-radius: 2px;">
                     <i class="bi bi-lightning-fill"></i> BUY NOW
                 </button>
             </div>
         </div>
 
         <div class="col-md-7 ps-md-4 mt-3 mt-md-0">
-            
+
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb small text-muted">
-                    <li class="breadcrumb-item"><a asp-action="Index" class="text-decoration-none text-muted">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-muted">@Model.Category.Name</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Index" class="text-decoration-none text-muted">Home</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#"
+                            class="text-decoration-none text-muted">@Model.Category.Name</a></li>
                     <li class="breadcrumb-item active" aria-current="page">@Model.Title</li>
                 </ol>
             </nav>
 
             <h4 class="fw-normal">@Model.Title</h4>
-            
+
             <div class="d-flex align-items-center mb-3">
                 <span class="badge bg-success d-flex align-items-center px-2 py-1 me-2">
                     4.4 <i class="bi bi-star-fill ms-1" style="font-size: 10px;"></i>
@@ -47,9 +55,12 @@
             <div class="mb-4 small">
                 <h6 class="fw-bold">Available offers</h6>
                 <ul class="list-unstyled">
-                    <li class="mb-1"><i class="bi bi-tag-fill text-success me-2"></i><strong>Bank Offer</strong> 5% Unlimited Cashback on Axis Bank Credit Card</li>
-                    <li class="mb-1"><i class="bi bi-tag-fill text-success me-2"></i><strong>Special Price</strong> Get extra ₹3000 off (price inclusive of discount)</li>
-                    <li><i class="bi bi-calendar-check text-success me-2"></i><strong>No Cost EMI</strong> starting from ₹1,500/month</li>
+                    <li class="mb-1"><i class="bi bi-tag-fill text-success me-2"></i><strong>Bank Offer</strong> 5%
+                        Unlimited Cashback on Axis Bank Credit Card</li>
+                    <li class="mb-1"><i class="bi bi-tag-fill text-success me-2"></i><strong>Special Price</strong> Get
+                        extra ₹3000 off (price inclusive of discount)</li>
+                    <li><i class="bi bi-calendar-check text-success me-2"></i><strong>No Cost EMI</strong> starting from
+                        ₹1,500/month</li>
                 </ul>
             </div>
 

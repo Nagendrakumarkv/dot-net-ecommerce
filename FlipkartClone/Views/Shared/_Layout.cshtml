@@ -1,4 +1,15 @@
-﻿@using FlipkartClone.Constants
+﻿@using Microsoft.AspNetCore.Http
+@using FlipkartClone.Extensions
+@using FlipkartClone.Models
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    // Retrieve cart from session
+    var cart = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart");
+    // Count items (if cart is null, count is 0)
+    int count = cart != null ? cart.Sum(item => item.Quantity) : 0;
+}
+
+@using FlipkartClone.Constants
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,8 +63,16 @@
                         }
 
                         <li class="nav-item ms-3">
-                            <a class="nav-link" href="#">
-                                <i class="bi bi-cart-fill" style="font-size: 1.2rem;"></i> Cart
+                            <a class="nav-link position-relative d-inline-flex align-items-center" asp-controller="Cart"
+                                asp-action="Index">
+                                <i class="bi bi-cart-fill" style="font-size: 1.2rem;"></i>
+                                <span class="ms-1">Cart</span> @if (count > 0)
+                                {
+                                    <span class="position-absolute badge rounded-pill bg-danger"
+                                        style="font-size: 0.6rem; top: 2px; left: 18px;">
+                                        @count
+                                    </span>
+                                }
                             </a>
                         </li>
                     </ul>

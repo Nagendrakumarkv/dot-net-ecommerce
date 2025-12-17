@@ -15,6 +15,17 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 builder.Services.AddControllersWithViews();
 
+// Add Session Support
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Cart clears after 30 mins of inactivity
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 var app = builder.Build();
 
 // ... existing code ...
@@ -23,6 +34,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession(); // <--- Add this line
 
 // 3. Enable Authentication & Authorization (ADD THIS ORDER MATTERS!)
 app.UseAuthentication(); // Must be before Authorization
@@ -33,13 +46,13 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 // 4. Map Razor Pages (Identity uses Razor Pages for Login/Register)
-app.MapRazorPages(); 
+app.MapRazorPages();
 
 // --- ADD THIS BLOCK HERE ---
-using (var scope = app.Services.CreateScope()) 
+using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-    try 
+    try
     {
         await FlipkartClone.Data.DbSeeder.SeedRolesAndAdminAsync(services);
     }

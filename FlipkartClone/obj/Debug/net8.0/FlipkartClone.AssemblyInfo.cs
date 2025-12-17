@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FlipkartClone")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6845c7f20c4486662099042cbfc07ebb936dd81b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb4d4ad8879f2c44db166c9436d8b4da9e32785b")]
 [assembly: System.Reflection.AssemblyProductAttribute("FlipkartClone")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FlipkartClone")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
