@@ -5,7 +5,7 @@ using FlipkartClone.Models;
 namespace FlipkartClone.Data
 {
     // Change DbContext to IdentityDbContext
-    public class ApplicationDbContext : IdentityDbContext 
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -13,5 +13,6 @@ namespace FlipkartClone.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Address> Addresses { get; set; }
     }
 }
