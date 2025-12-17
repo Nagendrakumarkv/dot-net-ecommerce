@@ -1,15 +1,30 @@
 /* GLOBAL STYLES */
+html, body {
+    height: 100%; /* Ensure the page takes full height */
+    margin: 0;
+}
+
 body {
-    background-color: #f1f3f6; /* Light gray background */
+    background-color: #f1f3f6;
     font-family: 'Roboto', sans-serif;
-    margin-bottom: 60px;
+    display: flex;             /* Use Flexbox */
+    flex-direction: column;    /* Stack elements vertically */
+}
+
+/* MAIN CONTENT WRAPPER */
+/* This pushes the footer down by growing to fill available space */
+.main-content-wrapper {
+    flex: 1;
+    margin-top: 80px; /* Space for fixed navbar */
+    padding-bottom: 40px;
 }
 
 /* NAVBAR STYLES */
 .fk-navbar {
-    background-color: #2874f0; /* Flipkart Blue */
+    background-color: #2874f0;
     color: white;
     box-shadow: 0 2px 4px rgba(0,0,0,.2);
+    min-height: 56px;
 }
 
 .fk-navbar .navbar-brand {
@@ -66,11 +81,34 @@ body {
 
 /* FOOTER */
 .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-color: #172337; /* Dark footer */
+    background-color: #172337;
     color: white;
     text-align: center;
     padding: 20px 0;
+    width: 100%;
+    /* Remove 'position: absolute' to let flexbox handle it */
+}
+
+/* PRODUCT CARD STYLES */
+.product-card {
+    border: 1px solid #f0f0f0;
+    transition: box-shadow 0.2s;
+    cursor: pointer;
+    background: white;
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.product-card .card-title {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.product-card .btn-primary {
+    background-color: #2874f0;
+    border: none;
+    font-weight: bold;
 }
