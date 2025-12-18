@@ -6,13 +6,13 @@
 <div class="container mt-5 text-center">
     <div class="card shadow p-5 mx-auto" style="max-width: 500px;">
         <h3 class="fw-bold text-secondary mb-4">Payment Options</h3>
-        
+
         <div class="alert alert-info text-start">
             <strong>Total Amount:</strong> ₹@total
         </div>
 
         <div class="text-start mb-4">
-             <div class="form-check mb-2">
+            <div class="form-check mb-2">
                 <input class="form-check-input" type="radio" name="payment" checked>
                 <label class="form-check-label">UPI / Wallets</label>
             </div>
@@ -26,6 +26,13 @@
             </div>
         </div>
 
-        <button class="btn btn-success w-100 btn-lg">PAY ₹@total</button>
+        <form asp-controller="Order" asp-action="PlaceOrder" method="post">
+
+            <input type="hidden" name="addressId" value="@ViewBag.AddressId" />
+
+            <button type="submit" class="btn btn-success w-100 btn-lg shadow-sm">
+                PAY ₹@Model.Sum(x => x.Total)
+            </button>
+        </form>
     </div>
 </div>
