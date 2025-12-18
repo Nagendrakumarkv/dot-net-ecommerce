@@ -39,3 +39,128 @@ Phase 5: User & Admin Features (Days 14-15)
 Day 14: Order History (User view) & Order Management (Admin view: Ship/Deliver).
 
 Day 15: Polish (Error pages, Form Validations) & Final Deployment.
+
+---
+
+1. Project Creation & Setup
+   These commands were used on Day 1 to start the project.
+
+Create the Solution/Project:
+
+Bash
+
+dotnet new mvc -n FlipkartClone
+cd FlipkartClone
+
+2. Package Installation (NuGet)
+   These commands add external libraries to your project. You can run these anytime to add features.
+
+Database (PostgreSQL) Packages:
+
+Bash
+
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.EntityFrameworkCore.Design
+
+Identity (Security/Login) Packages:
+
+Bash
+
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+dotnet add package Microsoft.AspNetCore.Identity.UI
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+
+Alternative: Restore Packages manually (if editing .csproj):
+
+Bash
+
+dotnet restore
+
+3. Database Management (Entity Framework)
+These are the most frequently used commands. You run these whenever you change a Model (like adding a new table or column).
+
+Create a Migration (Snapshot of your code changes):
+
+Bash
+
+dotnet ef migrations add NameOfMigration
+# Examples we used:
+# dotnet ef migrations add InitialCreate
+# dotnet ef migrations add AddIdentitySchema
+# dotnet ef migrations add AddAddressTable
+# dotnet ef migrations add AddOrderTables
+
+Update Database (Apply changes to PostgreSQL):
+
+Bash
+
+dotnet ef database update
+
+4. Scaffolding (Code Generation)
+Used on Day 2 to generate the Login/Register pages.
+
+Install the Generator Tool (Global):
+
+Bash
+
+dotnet tool install -g dotnet-aspnet-codegenerator
+(If it fails, try adding --version 8.0.0)
+
+Generate Identity Pages:
+
+Bash
+
+dotnet aspnet-codegenerator identity -dc FlipkartClone.Data.ApplicationDbContext
+
+5. Running & Debugging
+Used every day to see your work.
+
+Run the App (Developer Mode):
+
+Bash
+
+dotnet run
+
+Watch Mode (Auto-reload on save - Optional but helpful):
+
+Bash
+
+dotnet watch run
+
+6. Deployment (Day 15)
+Used to prepare the app for a real server.
+
+Publish (Create optimized files):
+
+Bash
+
+dotnet publish -c Release -o ./publish
+
+Run the Published App:
+
+Bash
+
+cd publish
+dotnet FlipkartClone.dll
+
+7. Troubleshooting Commands
+Commands we discussed to fix common errors.
+
+Clear NuGet Cache (If package install fails):
+
+Bash
+
+dotnet nuget locals all --clear
+
+Uninstall a Global Tool:
+
+Bash
+
+dotnet tool uninstall -g dotnet-aspnet-codegenerator
+
+Check PostgreSQL Tables (Inside psql shell):
+
+Bash
+
+\dt

@@ -233,3 +233,8 @@ D:\dot-net\dot-net-ecommerce\FlipkartClone\bin\Debug\net8.0\runtimes\win\lib\net
 D:\dot-net\dot-net-ecommerce\FlipkartClone\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 D:\dot-net\dot-net-ecommerce\FlipkartClone\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 D:\dot-net\dot-net-ecommerce\FlipkartClone\obj\Debug\net8.0\FlipkartClone.MvcApplicationPartsAssemblyInfo.cs
+D:\dot-net\dot-net-ecommerce\FlipkartClone\bin\Debug\net8.0\publish\web.config
+D:\dot-net\dot-net-ecommerce\FlipkartClone\bin\Debug\net8.0\publish\appsettings.Development.json
+D:\dot-net\dot-net-ecommerce\FlipkartClone\bin\Debug\net8.0\publish\appsettings.json
+D:\dot-net\dot-net-ecommerce\FlipkartClone\bin\Debug\net8.0\publish\FlipkartClone.deps.json
+D:\dot-net\dot-net-ecommerce\FlipkartClone\bin\Debug\net8.0\publish\FlipkartClone.runtimeconfig.json
