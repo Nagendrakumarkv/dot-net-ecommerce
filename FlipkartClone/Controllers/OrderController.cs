@@ -4,6 +4,8 @@ using System.Security.Claims;
 using FlipkartClone.Data;
 using FlipkartClone.Models;
 using FlipkartClone.Extensions;
+using FlipkartClone.Constants; // Needed for Roles
+using Microsoft.EntityFrameworkCore; // Add this
 
 namespace FlipkartClone.Controllers
 {
@@ -18,7 +20,6 @@ namespace FlipkartClone.Controllers
         }
 
         // POST: /Order/PlaceOrder
-        // [HttpPost]
         [HttpGet]
         public IActionResult PlaceOrder(int addressId)
         {
@@ -71,6 +72,54 @@ namespace FlipkartClone.Controllers
         public IActionResult OrderConfirmation(int id)
         {
             return View(id); // Just pass the Order ID to display
+        }
+
+        // ... inside OrderController class ...
+
+        // ---------------- USER SECTION ----------------
+
+        // GET: /Order/MyOrders
+        public async Task<IActionResult> MyOrders()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var orders = await _context.Orders
+                .Include(o => o.OrderItems)
+                .ThenInclude(oi => oi.Product)
+                .Where(o => o.UserId == userId)
+                .OrderByDescending(o => o.OrderDate)
+                .ToListAsync();
+
+            return View(orders);
+        }
+
+        // ---------------- ADMIN SECTION ----------------
+
+        // GET: /Order/ManageOrders
+        [Authorize(Roles = Roles.Admin)]
+        public async Task<IActionResult> ManageOrders()
+        {
+            var orders = await _context.Orders
+                .Include(o => o.OrderItems)
+                .ThenInclude(oi => oi.Product)
+                .OrderByDescending(o => o.OrderDate)
+                .ToListAsync();
+
+            return View(orders);
+        }
+
+        // POST: /Order/UpdateStatus
+        [HttpPost]
+        [Authorize(Roles = Roles.Admin)]
+        public async Task<IActionResult> UpdateStatus(int orderId, string status)
+        {
+            var order = await _context.Orders.FindAsync(orderId);
+            if (order != null)
+            {
+                order.OrderStatus = status;
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(ManageOrders));
         }
     }
 }

@@ -1,0 +1,68 @@
+@model IEnumerable<FlipkartClone.Models.Order>
+
+<div class="container mt-4 mb-5">
+    <h4 class="mb-4">My Orders</h4>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">You haven't placed any orders yet.</div>
+    }
+    else
+    {
+        @foreach (var order in Model)
+        {
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="text-muted small">ORDER PLACED</span><br />
+                        <strong>@order.OrderDate.ToString("dd MMM yyyy")</strong>
+                    </div>
+                    <div>
+                        <span class="text-muted small">TOTAL</span><br />
+                        <strong>₹@order.TotalAmount</strong>
+                    </div>
+                    <div>
+                        <span class="text-muted small">ORDER # @order.Id</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-9">
+                            @foreach (var item in order.OrderItems)
+                            {
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="@item.Product.ImageUrl" style="width: 60px; height: 60px; object-fit: contain;"
+                                        class="me-3 border p-1" />
+                                    <div>
+                                        <h6 class="mb-1">
+                                            <a asp-controller="Home" asp-action="Details" asp-route-id="@item.ProductId"
+                                                class="text-decoration-none text-dark">
+                                                @item.Product.Title
+                                            </a>
+                                        </h6>
+                                        <small class="text-muted">Qty: @item.Quantity</small>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-3 border-start">
+                            <h6 class="fw-bold">Status</h6>
+                            @if (order.OrderStatus == "Delivered")
+                            {
+                                <span class="badge bg-success">Delivered</span>
+                            }
+                            else if (order.OrderStatus == "Shipped")
+                            {
+                                <span class="badge bg-warning text-dark">Shipped</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Processing</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

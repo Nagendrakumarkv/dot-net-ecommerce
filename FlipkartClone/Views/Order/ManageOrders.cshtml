@@ -1,0 +1,52 @@
+@model IEnumerable<FlipkartClone.Models.Order>
+
+<div class="container mt-4">
+    <h3 class="mb-4">Manage Orders</h3>
+
+    <table class="table table-bordered table-hover bg-white shadow-sm">
+        <thead class="table-light">
+            <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>User Email</th>
+                <th>Total</th>
+                <th>Current Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>#@item.Id</td>
+                    <td>@item.OrderDate.ToShortDateString()</td>
+                    <td>@item.UserId</td>
+                    <td>₹@item.TotalAmount</td>
+                    <td>
+                        <span class="badge bg-info text-dark">@item.OrderStatus</span>
+                    </td>
+                    <td>
+                        <form asp-action="UpdateStatus" method="post" class="d-flex gap-2">
+                            <input type="hidden" name="orderId" value="@item.Id" />
+
+                            @if (item.OrderStatus == "Placed")
+                            {
+                                <button type="submit" name="status" value="Shipped" class="btn btn-sm btn-warning">Mark
+                                    Shipped</button>
+                            }
+                            @if (item.OrderStatus == "Shipped")
+                            {
+                                <button type="submit" name="status" value="Delivered" class="btn btn-sm btn-success">Mark
+                                    Delivered</button>
+                            }
+                            @if (item.OrderStatus == "Delivered")
+                            {
+                                <span class="text-success small"><i class="bi bi-check-all"></i> Complete</span>
+                            }
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
