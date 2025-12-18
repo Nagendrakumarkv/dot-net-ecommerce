@@ -18,7 +18,8 @@ namespace FlipkartClone.Controllers
         }
 
         // POST: /Order/PlaceOrder
-        [HttpPost]
+        // [HttpPost]
+        [HttpGet]
         public IActionResult PlaceOrder(int addressId)
         {
             // 1. Get User ID
@@ -49,7 +50,7 @@ namespace FlipkartClone.Controllers
                     Price = item.Price
                 };
                 order.OrderItems.Add(orderItem);
-                
+
                 // Optional: Reduce stock logic here if you had a 'Stock' field
                 // var product = _context.Products.Find(item.ProductId);
                 // product.Stock -= item.Quantity;
