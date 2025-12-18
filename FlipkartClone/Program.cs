@@ -63,4 +63,12 @@ using (var scope = app.Services.CreateScope())
 }
 // ---------------------------
 
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+}
+
+// Add this line OUTSIDE the if-block to handle 404s in Dev mode too
+app.UseStatusCodePagesWithReExecute("/Home/Error", "?statusCode={0}");
+
 app.Run();
