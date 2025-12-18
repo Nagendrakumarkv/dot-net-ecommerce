@@ -2,6 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 using FlipkartClone.Data;
 using FlipkartClone.Models;
 using FlipkartClone.Extensions;
+using Microsoft.AspNetCore.Authorization; // Needed for [Authorize]
+using Microsoft.AspNetCore.Identity; // Needed to get User ID
+using System.Security.Claims;
+using FlipkartClone.Models.ViewModels; // Add this
 
 namespace FlipkartClone.Controllers
 {
@@ -109,6 +113,44 @@ namespace FlipkartClone.Controllers
                 HttpContext.Session.SetObjectAsJson("Cart", cart);
             }
             return RedirectToAction("Index");
+        }
+
+        [Authorize] // <--- Forces User to Login before seeing this page
+        [HttpGet]
+        public IActionResult Checkout()
+        {
+            // 1. Get Cart
+            var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart");
+            if (cart == null || cart.Count == 0)
+            {
+                return RedirectToAction("Index"); // Kick back if empty
+            }
+
+            // 2. Get User's Addresses
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var addresses = _context.Addresses
+                .Where(a => a.UserId == userId)
+                .ToList();
+
+            // 3. Combine into ViewModel
+            var model = new CheckoutViewModel
+            {
+                CartItems = cart,
+                Addresses = addresses
+            };
+
+            return View(model);
+        }
+
+        // GET: /Cart/Payment?selectedAddressId=5
+        [Authorize]
+        public IActionResult Payment(int selectedAddressId)
+        {
+            // Pass the AddressId to the view so we can send it to the final "Place Order" step later
+            ViewBag.AddressId = selectedAddressId;
+
+            var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart");
+            return View(cart);
         }
     }
 }
